@@ -1,55 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Source_Sans_3, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./components/ThemeProvider"; // Ensure ThemeProvider.tsx exists in the components folder
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-// Political campaign fonts - clean, trustworthy, readable
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
-  variable: "--font-source-sans",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  variable: "--font-open-sans",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
+const candidateName = process.env.NEXT_PUBLIC_CANDIDATE_NAME || "[CANDIDATE_NAME]";
+const position = process.env.NEXT_PUBLIC_CANDIDATE_POSITION || "[CANDIDATE_POSITION]";
+const domain = process.env.NEXT_PUBLIC_CAMPAIGN_DOMAIN || "[CAMPAIGN_DOMAIN]";
 
 export const metadata: Metadata = {
-  title: "Athena Aguiar for Eugene Ward 5 City Council | Progressive Leadership",
-  description: "Official campaign website for Athena Aguiar, candidate for Eugene Ward 5 City Council in Oregon. Learn about her progressive platform, events, and how to get involved.",
-  keywords: "Athena Aguiar, Eugene Ward 5, City Council, Oregon, campaign, election, politics, progressive leadership, housing justice, climate action",
-  authors: [{ name: "Athena for Eugene Campaign Team" }],
+  title: `${candidateName} for ${position} | Progressive Leadership`,
+  description: `Official campaign website for ${candidateName}, candidate for ${position}. Learn about their platform, events, and how to get involved.`,
+  keywords: `${candidateName}, ${position}, campaign, election, politics, progressive leadership`,
+  authors: [{ name: `${candidateName} Campaign Team` }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://athenaforeugene.org",
-    title: "Athena Aguiar for Eugene Ward 5 City Council | Progressive Leadership",
-    description: "Official campaign website for Athena Aguiar, candidate for Eugene Ward 5 City Council in Oregon.",
-    siteName: "Athena for Eugene Ward 5",
+    url: `https://${domain}`,
+    title: `${candidateName} for ${position} | Progressive Leadership`,
+    description: `Official campaign website for ${candidateName}, candidate for ${position}.`,
+    siteName: `${candidateName} for ${position}`,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Athena Aguiar for Eugene Ward 5 City Council | Progressive Leadership",
-    description: "Official campaign website for Athena Aguiar, candidate for Eugene Ward 5 City Council in Oregon.",
+    title: `${candidateName} for ${position} | Progressive Leadership`,
+    description: `Official campaign website for ${candidateName}, candidate for ${position}.`,
   },
 };
 
@@ -60,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${montserrat.variable} ${sourceSans.variable} ${openSans.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
