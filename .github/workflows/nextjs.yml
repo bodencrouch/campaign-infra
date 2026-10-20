@@ -60,6 +60,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
+          # Enable Pages (Source: GitHub Actions) if it is not already enabled. Creating the site
+          # requires a token with repo admin rights: set the PAGES_ENABLEMENT_TOKEN secret (PAT)
+          # or enable Pages manually in Settings > Pages. Falls back to GITHUB_TOKEN.
+          enablement: true
+          token: ${{ secrets.PAGES_ENABLEMENT_TOKEN || github.token }}
           # Automatically inject basePath in your Next.js configuration file and disable
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
           #
